@@ -1,0 +1,24 @@
+micronaut:
+  application:
+    name: mn-example
+
+  server:
+    port: 8080
+  #    netty:
+  #      worker:
+  #        event-loop-group: server
+
+  http:
+    client:
+      event-loop-group: client
+
+  netty:
+    event-loops:
+      client:
+        num-threads: 2
+#      server:
+#        num-threads: 2
+
+services:
+  mock-server:
+    url: http://mock-server:3000
