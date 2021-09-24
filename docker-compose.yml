@@ -1,11 +1,24 @@
 version: "3.8"
 
 services:
-  mn-example:
+  dynamodb-local:
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    image: amazon/dynamodb-local:latest
+    container_name: dynamodb-local
+    ports:
+      - "8000:8000"
+    volumes:
+      - dynamodb_local:/home/dynamodblocal/data
+    working_dir: /home/dynamodblocal
+    user: root
+
+  micronaut-example:
+    depends_on:
+      - dynamodb-local
     build:
       context: .
-    image: mn-example
-    container_name: mn-example
+    image: micronaut-example
+    container_name: micronaut-example
     networks:
       - default
     ports:
@@ -22,3 +35,7 @@ networks:
   default:
     external:
       name: env-local
+
+volumes:
+  dynamodb_local:
+    external: true

@@ -1,6 +1,6 @@
 micronaut:
   application:
-    name: mn-example
+    name: micronaut-example
 
   server:
     port: 8080
@@ -20,5 +20,11 @@ micronaut:
 #        num-threads: 2
 
 services:
-  mock-server:
+  account:
     url: http://mock-server:3000
+
+aws:
+  #  localstack only
+  region: us-east-1
+  accessKeyId: test
+  secretKey: test
