@@ -28,3 +28,9 @@ build/
 *.iml
 .idea/
 node_modules/
+
+.terraform/*
+*.terraform.*
+*.tfstate
+*.tfstate.*
+*.tfvars

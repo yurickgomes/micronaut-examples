@@ -1,1 +1,1 @@
-rootProject.name = "mn-example"
+rootProject.name = "micronaut-example"
