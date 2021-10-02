@@ -2,7 +2,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "1.5.31"
     id("org.jetbrains.kotlin.kapt") version "1.5.31"
     id("org.jetbrains.kotlin.plugin.allopen") version "1.5.31"
-    id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
     id("io.micronaut.application") version "2.0.6"
 }
 
@@ -47,26 +47,26 @@ dependencies {
     implementation("io.micronaut:micronaut-runtime")
     implementation("io.micronaut:micronaut-validation")
     implementation("io.micronaut:micronaut-management")
-    runtimeOnly("io.micronaut:micronaut-core")
 
     kapt("io.micronaut:micronaut-inject-java")
     kaptTest("io.micronaut:micronaut-inject-java")
     kapt("io.micronaut:micronaut-validation")
 
-    testImplementation("io.micronaut.test:micronaut-test-junit5")
-
     implementation("io.micronaut.kotlin:micronaut-kotlin-runtime")
     implementation("io.micronaut.kotlin:micronaut-kotlin-extension-functions")
 
-    implementation("io.micronaut.aws:micronaut-aws-sdk-v2:2.10.0")
-    implementation("software.amazon.awssdk:dynamodb:2.17.44") {
+    implementation("io.micronaut.reactor:micronaut-reactor")
+    implementation("io.micronaut.reactor:micronaut-reactor-http-client")
+
+    implementation("io.micronaut.aws:micronaut-aws-sdk-v2")
+    implementation("software.amazon.awssdk:dynamodb:2.17.46") {
         exclude(group = "software.amazon.awssdk", module = "apache-client")
     }
-    implementation("software.amazon.awssdk:dynamodb-enhanced:2.17.44")
+    implementation("software.amazon.awssdk:dynamodb-enhanced:2.17.46")
 
     implementation("javax.annotation:javax.annotation-api:1.3.2")
 
-    implementation("io.github.microutils:kotlin-logging-jvm:2.0.10")
+    implementation("io.github.microutils:kotlin-logging-jvm:2.0.11")
 
     runtimeOnly("ch.qos.logback:logback-classic:1.2.6")
 }

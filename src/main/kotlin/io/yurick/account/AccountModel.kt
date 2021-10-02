@@ -9,7 +9,7 @@ data class AccountCache(
     @get:DynamoDbPartitionKey
     var id: String? = null,
     var name: String? = null,
-    var expireAt: Long = System.currentTimeMillis() / 1000L + TTL_DAYS
+    var expireAt: Long = System.currentTimeMillis() / 1000L + TTL_DAYS,
 ) {
     companion object {
         private const val TTL_DAYS = 3 * 24 * 60 * 60

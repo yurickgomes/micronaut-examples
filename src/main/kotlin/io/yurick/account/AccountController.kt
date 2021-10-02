@@ -1,5 +1,6 @@
 package io.yurick.account
 
+import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.PathVariable
@@ -14,12 +15,17 @@ class AccountController(
     @Get("/{accountId}")
     suspend fun fetchAccountById(
         @PathVariable("accountId") accountId: UUID,
-    ): Account? {
+    ): HttpResponse<Account> {
         val cachedAccount = accountDao.getAccountById(accountId.toString()).awaitSingleOrNull()
-            ?: return accountService.fetchAccount(accountId)?.also {
+
+        if (cachedAccount == null) {
+            val account = accountService.fetchAccount(accountId)?.also {
                 accountDao.save(it.toAccountCache())
             }
 
-        return cachedAccount.toAccountModel()
+            return HttpResponse.ok(account)
+        }
+
+        return HttpResponse.ok(cachedAccount.toAccountModel())
     }
 }

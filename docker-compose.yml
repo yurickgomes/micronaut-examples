@@ -5,6 +5,8 @@ services:
     command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
     image: amazon/dynamodb-local:latest
     container_name: dynamodb-local
+    networks:
+      - env-local
     ports:
       - "8000:8000"
     volumes:
@@ -20,21 +22,20 @@ services:
     image: micronaut-example
     container_name: micronaut-example
     networks:
-      - default
+      - env-local
     ports:
       - "8080:8080"
     deploy:
       resources:
         limits:
-          cpus: 1
+          cpus: "1"
           memory: 512M
         reservations:
           memory: 512M
 
 networks:
-  default:
-    external:
-      name: env-local
+  env-local:
+    external: true
 
 volumes:
   dynamodb_local:

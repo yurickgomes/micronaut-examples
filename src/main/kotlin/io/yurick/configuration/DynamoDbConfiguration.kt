@@ -19,13 +19,14 @@ class DynamoDbConfiguration(
     private val accessKeyId: String,
     @Value("\${aws.secretKey}")
     private val secretKey: String,
+    @Value("\${aws.endpointOverride}")
+    private val endpointOverride: String,
 ) {
     @Bean
     @Singleton
     fun dynamoDbAsyncClient() = DynamoDbAsyncClient.builder()
         .region(Region.of(awsRegion))
-//        .endpointOverride(URI.create("http://localstack:8000")) //  localstack only
-        .endpointOverride(URI.create("http://dynamodb-local:8000")) // dynamodb local only
+        .endpointOverride(URI.create(endpointOverride)) // dynamodb or localstack local only
         .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create(accessKeyId, secretKey)))
         .build()
 

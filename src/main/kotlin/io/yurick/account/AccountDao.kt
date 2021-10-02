@@ -7,7 +7,6 @@ import software.amazon.awssdk.enhanced.dynamodb.Key
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema
 import javax.inject.Singleton
 
-
 @Singleton
 class AccountDao(
     dynamoClient: DynamoDbEnhancedAsyncClient,
@@ -16,13 +15,19 @@ class AccountDao(
 
     fun save(accountCache: AccountCache): Mono<Void> =
         Mono.fromFuture(accountTable.putItem(accountCache))
-            .doOnError { logger.error(it) { "Error saving account to DynamoDb" } }
+            .doOnError {
+                logger.error(it) { "Error saving account to DynamoDb" }
+                throw AccountCacheException(it)
+            }
 
     fun getAccountById(accountId: String): Mono<AccountCache> {
         val key = Key.builder().partitionValue(accountId).build()
 
         return Mono.fromFuture(accountTable.getItem(key))
-            .doOnError { logger.error(it) { "Error retrieving account from DynamoDb" } }
+            .doOnError {
+                logger.error(it) { "Error retrieving account from DynamoDb" }
+                throw AccountCacheException(it)
+            }
     }
 
     companion object {
@@ -30,5 +35,3 @@ class AccountDao(
         private val logger = KotlinLogging.logger { }
     }
 }
-
-
