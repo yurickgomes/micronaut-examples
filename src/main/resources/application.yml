@@ -24,7 +24,8 @@ services:
     url: http://mock-server:3000
 
 aws:
-  #  localstack only
+  #  localstack or dynamodb local only
   region: us-east-1
   accessKeyId: test
   secretKey: test
+  endpointOverride: http://dynamodb-local:8000
