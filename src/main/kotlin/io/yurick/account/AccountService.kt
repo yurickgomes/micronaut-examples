@@ -5,10 +5,10 @@ import io.micronaut.http.HttpRequest
 import io.micronaut.http.client.annotation.Client
 import io.micronaut.http.uri.UriBuilder
 import io.micronaut.reactor.http.client.ReactorHttpClient
+import jakarta.inject.Singleton
 import kotlinx.coroutines.reactive.awaitFirst
 import mu.KotlinLogging
 import java.util.UUID
-import javax.inject.Singleton
 
 @Singleton
 class AccountService(

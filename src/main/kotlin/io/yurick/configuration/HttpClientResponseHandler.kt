@@ -7,7 +7,7 @@ import io.micronaut.http.client.exceptions.HttpClientResponseException
 import io.micronaut.http.server.exceptions.ExceptionHandler
 import io.micronaut.http.server.exceptions.response.ErrorContext
 import io.micronaut.http.server.exceptions.response.ErrorResponseProcessor
-import javax.inject.Singleton
+import jakarta.inject.Singleton
 
 @Produces
 @Singleton

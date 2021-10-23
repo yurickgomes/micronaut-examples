@@ -6,7 +6,7 @@ import io.micronaut.http.annotation.Produces
 import io.micronaut.http.server.exceptions.ExceptionHandler
 import io.micronaut.http.server.exceptions.response.ErrorContext
 import io.micronaut.http.server.exceptions.response.ErrorResponseProcessor
-import javax.inject.Singleton
+import jakarta.inject.Singleton
 
 class AccountCacheException(cause: Throwable) : RuntimeException(cause)
 

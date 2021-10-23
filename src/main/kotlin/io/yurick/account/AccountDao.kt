@@ -1,11 +1,11 @@
 package io.yurick.account
 
+import jakarta.inject.Singleton
 import mu.KotlinLogging
 import reactor.core.publisher.Mono
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedAsyncClient
 import software.amazon.awssdk.enhanced.dynamodb.Key
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema
-import javax.inject.Singleton
 
 @Singleton
 class AccountDao(

@@ -43,10 +43,10 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.5.2")
 
-    implementation("io.micronaut:micronaut-http-client")
     implementation("io.micronaut:micronaut-runtime")
     implementation("io.micronaut:micronaut-validation")
     implementation("io.micronaut:micronaut-management")
+    implementation("io.micronaut.reactor:micronaut-reactor-http-client")
 
     kapt("io.micronaut:micronaut-inject-java")
     kaptTest("io.micronaut:micronaut-inject-java")
@@ -54,9 +54,6 @@ dependencies {
 
     implementation("io.micronaut.kotlin:micronaut-kotlin-runtime")
     implementation("io.micronaut.kotlin:micronaut-kotlin-extension-functions")
-
-    implementation("io.micronaut.reactor:micronaut-reactor")
-    implementation("io.micronaut.reactor:micronaut-reactor-http-client")
 
     implementation("io.micronaut.aws:micronaut-aws-sdk-v2")
     implementation("software.amazon.awssdk:dynamodb:2.17.46") {
